@@ -1,28 +1,13 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 import { hogwartsStudentRegistry } from './data.js'
-import './Register'
 import Register from './Register.js'
+import StudentForm from './StudentForm.js'
 
 function App(props) {
   const [students, setStudents] = useState(hogwartsStudentRegistry)
-  const [name, setName] = useState('')
-  const [house, setHouse] = useState('')
-  function handleName(e) {
-    setName(e.target.value)
-  }
-  function handleHouse(e) {
-    setHouse(e.target.value)
-  }
-  function handleSubmit(e) {
-    e.preventDefault()
-    setStudents(
-      students.unshift({
-        name: name,
-        house: house,
-        time: new Date().toUTCString()
-      })
-    )
+  function updateStudents(newList) {
+    setStudents(newList)
   }
   return (
     <div className="App">
@@ -30,27 +15,11 @@ function App(props) {
       <div className="app-wrapper">
         <div className="app-lhs-container">
           <div className="form-wrapper">
-            <div className="attendance-form">
-              <form>
-                <label>
-                  Full name
-                  <input
-                    className="form-item form-field"
-                    onChange={handleName}
-                  ></input>
-                </label>
-                <label>
-                  House
-                  <input
-                    className="form-item form-field"
-                    onChange={handleHouse}
-                  ></input>
-                </label>
-                <button className="form-item submit-btn" onClick={handleSubmit}>
-                  Register!
-                </button>
-              </form>
-            </div>
+            <StudentForm
+              updateStudents={(student) => {
+                updateStudents([student, ...students])
+              }}
+            />
           </div>
         </div>
         <div className="app-rhs-container">
