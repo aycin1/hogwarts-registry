@@ -1,6 +1,8 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 import { hogwartsStudentRegistry } from './data.js'
+import './Register'
+import Register from './Register.js'
 
 function App(props) {
   const [students, setStudents] = useState(hogwartsStudentRegistry)
@@ -52,20 +54,7 @@ function App(props) {
           </div>
         </div>
         <div className="app-rhs-container">
-          <div className="register-wrapper">
-            <div className="register-list">
-              {hogwartsStudentRegistry.map((student) => {
-                return (
-                  <div>
-                    <h4>
-                      {student.name} - {student.house}
-                    </h4>
-                    <h5>{student.time}</h5>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          <Register students={students} />
         </div>
       </div>
     </div>
