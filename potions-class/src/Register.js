@@ -1,18 +1,16 @@
+import React from 'react'
+import Student from './Student.js'
+
 function Register(props) {
   return (
-    <div className="register-wrapper">
-      <div className="register-list">
-        {props.students.map((student) => {
-          return (
-            <div>
-              <h4>
-                {student.name} - {student.house}
-              </h4>
-              <h5>{student.time}</h5>
-            </div>
-          )
-        })}
-      </div>
+    <div className="register-list">
+      {props.students.map((student) => {
+        return (
+          <div className="student-card">
+            <Student student={student} />
+          </div>
+        )
+      })}
     </div>
   )
 }
